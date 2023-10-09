@@ -1,0 +1,8 @@
+prefix=/home/monodon/catkin_ws/devel
+
+Name: serial_comms
+Description: Description of serial_comms
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
