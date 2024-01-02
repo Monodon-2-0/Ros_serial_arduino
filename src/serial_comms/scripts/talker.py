@@ -60,11 +60,18 @@ class Communicator:
                 print(f"Connected by {addr}")
                 while True:
                     data = conn.recv(1024)
+                    data_decoded = data.decode('utf-8')
                     print(f"Data received {data}")
-                    if not data:
+                    if data_decoded.lower() == "close":
+                        # send response to the client which acknowledges that the
+                        # connection should be closed and break out of the loop
+                        conn.sendall("closed".encode("utf-8"))
                         break
-                    conn.sendall(data)
-                    self.pub.publish(data.decode('utf-8'))
+                    else:
+                        conn.sendall(data)
+                    self.pub.publish(data_decoded)
+                conn.close()
+            s.close()
 
 if __name__ == '__main__':
     try:
