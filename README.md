@@ -28,7 +28,7 @@ foo@bar:~$ docker exec -it container_name bash
 To start the bridge for publishers and subscribers:
 
 ```console
-foo@bar:~$ rosrun rosserial_python serial_node.py /dev/tty*
+foo@bar:~$ rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=57600
 ```
 
 
