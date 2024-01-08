@@ -29,6 +29,23 @@ To start the bridge for publishers and subscribers:
 
 ```console
 foo@bar:~$ rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=57600
+foo@bar:~$ rosrun rosserial_client make_library.py ~/sketchbook/libraries position_msg
+foo@bar:~$ rosrun rosserial_client make_libraries ~/Arduino/libraries serial_comms
 ```
+To create the new library.
+- Delete the ros_lib before running the command.
+- In the docker run:
+```console
+foo@bar:~$ cd catkin_ws
+foo@bar:~$ catkin_make
+foo@bar:~$ source devel/setup.bash
+foo@bar:~$ rosrun rosserial_arduino make_libraries.py ~/Arduino/libraries/ serial_comms
+It could be also the following 
+foo@bar:~$ rosrun rosserial_client  make_libraries.py ~/Arduino/libraries/ serial_comms
+```
+**NOTE**
+Ensure that the ROS Master URI and ROS IP configuration on both the Raspberry Pi and the other computer are correctly set to enable them to communicate with each other. 
+Once set up correctly, the other computer should be able to subscribe to the topic and receive the messages published by the Arduino via the Raspberry Pi.
 
-
+# TODO
+Check if you can use simultaneously ros and the mavlink messages. Check if you can receive and send data from/to the arduino on/from the topside computer without the need of raspberry pi, just with the Ethernet Cable. 
